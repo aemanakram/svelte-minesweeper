@@ -32,14 +32,13 @@
     return field;
   };
 
-  const addMines = (field) => {
-    let mines = 0;
-    while (mines < (fieldSize * fieldSize) / 10) {
+  const addMines = (field, mineCount) => {
+    while (mineCount > 0) {
       const x = Math.floor(Math.random() * fieldSize);
       const y = Math.floor(Math.random() * fieldSize);
       if (!field[x][y].isMine) {
         field[x][y].isMine = true;
-        mines++;
+        mineCount--;
       }
     }
     return field;
@@ -92,11 +91,6 @@
       gameover = true;
       minefield = [...minefield];
       return;
-    }
-
-    if (checkWin()) {
-      win = true;
-      gameover = true;
     }
     minefield = [...minefield];
   };
@@ -219,7 +213,6 @@
     pointer-events: none;
     border-color: white;
     background-color: red;
-    font-size: 0;
   }
 
   .reset-button {
