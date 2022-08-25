@@ -92,6 +92,11 @@
       minefield = [...minefield];
       return;
     }
+
+    if (checkWin()) {
+      win = true;
+      gameover = true;
+    }
     minefield = [...minefield];
   };
 
